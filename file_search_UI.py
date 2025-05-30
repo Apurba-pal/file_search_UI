@@ -57,6 +57,14 @@ def submit_files():
     submitted_files = file_list.copy()
     update_dropdown()
 
+    # Clear the file list display
+    file_listbox.configure(state="normal")
+    file_listbox.delete("1.0", "end")
+    file_listbox.configure(state="disabled")
+
+    # Clear the file list for new additions
+    file_list.clear()
+
 submit_button = ctk.CTkButton(main_frame, text="Submit", command=submit_files)
 submit_button.pack(padx=10, pady=(10, 0), fill="x")
 
