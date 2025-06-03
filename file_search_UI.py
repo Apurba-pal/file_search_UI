@@ -133,8 +133,10 @@ dropdown.set("No file submitted yet")
 summary_chat_frame = ctk.CTkFrame(main_frame)
 summary_chat_frame.pack(padx=10, pady=(10, 0), fill="both", expand=True)
 
+
+
 # --- Summary Display ---
-summary_box = ctk.CTkTextbox(summary_chat_frame, height=100)
+summary_box = ctk.CTkTextbox(summary_chat_frame, height=300)
 summary_box.pack(padx=5, pady=(5, 0), fill="x")
 summary_box.configure(state="disabled")
 
