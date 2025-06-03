@@ -125,9 +125,25 @@ def on_file_select(choice):
     summary_box.insert("end", f"AI Summary of {choice}")
     summary_box.configure(state="disabled")
 
-dropdown = ctk.CTkOptionMenu(main_frame, variable=selected_file, command=on_file_select)
-dropdown.pack(padx=10, pady=(10, 0), fill="x")
+# Frame to hold dropdown and open button
+file_dropdown_frame = ctk.CTkFrame(main_frame)
+file_dropdown_frame.pack(padx=10, pady=(10, 0), fill="x")
+
+dropdown = ctk.CTkOptionMenu(file_dropdown_frame, variable=selected_file, command=on_file_select)
+dropdown.pack(side="left", fill="x", expand=True)
 dropdown.set("No file submitted yet")
+
+def open_in_folder():
+    # Find the full path of the selected file
+    selected = selected_file.get()
+    for f in submitted_files:
+        if os.path.basename(f) == selected:
+            folder = os.path.dirname(f)
+            os.startfile(folder)
+            break
+
+open_button = ctk.CTkButton(file_dropdown_frame, text="Open in Folder", command=open_in_folder)
+open_button.pack(side="left", padx=(10, 0))
 
 # --- AI Summary and Chat Section ---
 summary_chat_frame = ctk.CTkFrame(main_frame)
